@@ -2,26 +2,21 @@
 <layout>
     <data>
         <variable name="albumviewmodel"
-                  type="com.example.socialearth.viewmodel.AlbumFragmentViewModel"/>
+                  type="com.example.socialearth.viewmodel.albums.AlbumFragmentViewModel"/>
     </data>
+<android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/list"
+        android:name="com.example.socialearth.AlbumFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:adapter="@{albumviewmodel.myAlbumRecyclerViewAdapter}"
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        tools:context=".view.albums.AlbumFragment"
+        tools:listitem="@layout/fragment_album_item"/>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal">
-
-    <TextView
-            android:id="@+id/item_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:textAppearance="?attr/textAppearanceListItem"/>
-
-    <TextView
-            android:id="@+id/content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:textAppearance="?attr/textAppearanceListItem"/>
-</LinearLayout>
 </layout>

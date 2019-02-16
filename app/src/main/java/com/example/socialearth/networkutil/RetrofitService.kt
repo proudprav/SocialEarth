@@ -8,4 +8,7 @@ interface RetrofitService {
 
     @GET("posts")
     fun getPosts() : Observable<ArrayList<PostDTO>>
+
+    @GET("users")
+    fun getUsers() : Observable<ArrayList<UsersDTO>>
 }
