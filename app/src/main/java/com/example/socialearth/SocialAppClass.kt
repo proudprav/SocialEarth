@@ -10,8 +10,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class SocialAppClass : Application(){
-    var compositeDisposable = CompositeDisposable()
+class SocialAppClass : Application() {
+
+    private var compositeDisposable = CompositeDisposable()
 
     override fun onCreate() {
         super.onCreate()

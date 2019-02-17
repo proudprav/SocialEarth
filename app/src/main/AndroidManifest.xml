@@ -15,20 +15,13 @@
         <activity
                 android:name=".view.albums.AlbumDetailActivity"
                 android:label="@string/title_activity_album_detail"
-                android:parentActivityName=".view.MainActivity"
-                android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value="com.example.socialearth.view.MainActivity"/>
+                >
+
         </activity>
         <activity
                 android:name=".view.posts.PostDetailActivity"
-                android:label="@string/title_activity_post_detail"
-                android:parentActivityName=".view.MainActivity"
-                android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value="com.example.socialearth.view.MainActivity"/>
+                android:label="@string/title_activity_post_detail">
+
         </activity>
         <activity
                 android:name=".view.MainActivity"

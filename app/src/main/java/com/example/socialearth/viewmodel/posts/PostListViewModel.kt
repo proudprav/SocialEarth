@@ -5,13 +5,13 @@ import android.arch.lifecycle.ViewModel
 import com.example.socialearth.model.PostDTO
 import com.example.socialearth.model.Users
 
-class PostListViewModel : ViewModel(){
+class PostListViewModel : ViewModel() {
 
     private val postTitle = MutableLiveData<String>()
     private val postBody = MutableLiveData<String>()
     private val postByUser = MutableLiveData<String>()
 
-    fun bind(post: PostDTO){
+    fun bind(post: PostDTO) {
         postTitle.value = post.title
         postBody.value = post.body
         postByUser.value = "- by " + Users.getUsername(post.userId!!).toString()
@@ -25,7 +25,7 @@ class PostListViewModel : ViewModel(){
         return postBody
     }
 
-    fun getPostByUser():MutableLiveData<String>{
+    fun getPostByUser(): MutableLiveData<String> {
         return postByUser
     }
 }

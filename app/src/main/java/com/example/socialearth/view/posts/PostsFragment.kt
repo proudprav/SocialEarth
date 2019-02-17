@@ -10,20 +10,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.socialearth.R
-import com.example.socialearth.databinding.FragmentPostsBinding
 import com.example.socialearth.viewmodel.posts.PostFragmentViewModel
 
 class PostsFragment : Fragment() {
 
-    lateinit var postListBinding: com.example.socialearth.databinding.FragmentPostsBinding
-    lateinit var postFragmentViewModel: PostFragmentViewModel
+    private lateinit var postListBinding: com.example.socialearth.databinding.FragmentPostsBinding
+    private lateinit var postFragmentViewModel: PostFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         postFragmentViewModel = ViewModelProviders.of(this).get(PostFragmentViewModel::class.java)
-        postListBinding = DataBindingUtil.inflate<FragmentPostsBinding>(
+        postListBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_posts, container, false
         )
@@ -35,7 +34,7 @@ class PostsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         postFragmentViewModel.uiEventLiveData.observe(this, Observer {
             startActivityfun(it)
-             })
+        })
     }
 
     private fun startActivityfun(postId: Bundle?) {

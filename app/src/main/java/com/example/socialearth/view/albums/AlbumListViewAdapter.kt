@@ -7,14 +7,12 @@ import android.view.ViewGroup
 import com.example.socialearth.R
 import com.example.socialearth.databinding.FragmentAlbumItemBinding
 import com.example.socialearth.model.AlbumsDTO
-import com.example.socialearth.model.PostDTO
-import com.example.socialearth.view.posts.MypostsRecyclerViewAdapter
 import com.example.socialearth.viewmodel.albums.AlbumListViewModel
 import java.util.*
 
-class MyAlbumRecyclerViewAdapter(listner : OnItemClickListener ): RecyclerView.Adapter<MyAlbumRecyclerViewAdapter.ItemRowHolder>() {
+class AlbumListViewAdapter(listner: OnItemClickListener) : RecyclerView.Adapter<AlbumListViewAdapter.ItemRowHolder>() {
 
-    lateinit var dataList: ArrayList<AlbumsDTO>
+    private lateinit var dataList: ArrayList<AlbumsDTO>
     private val listener: OnItemClickListener = listner
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ItemRowHolder {
@@ -29,6 +27,7 @@ class MyAlbumRecyclerViewAdapter(listner : OnItemClickListener ): RecyclerView.A
         itemRowHolder.bind(dataList[position], listener)
         itemRowHolder.albumListViewModel
     }
+
     fun updateDataList(list: ArrayList<AlbumsDTO>) {
         dataList = list
         notifyDataSetChanged()
@@ -39,9 +38,8 @@ class MyAlbumRecyclerViewAdapter(listner : OnItemClickListener ): RecyclerView.A
     }
 
     inner class ItemRowHolder(val view: FragmentAlbumItemBinding) : RecyclerView.ViewHolder(view.root) {
-
         var albumListViewModel: AlbumListViewModel = AlbumListViewModel()
-        fun bind(data: AlbumsDTO,listner: OnItemClickListener) {
+        fun bind(data: AlbumsDTO, listner: OnItemClickListener) {
             view.albumImage.setOnClickListener { listner.onItemClick(data) }
             albumListViewModel.bind(data)
             view.albumlistviewmodel = albumListViewModel

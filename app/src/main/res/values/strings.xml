@@ -3,6 +3,7 @@
     <string name="title_posts">Posts</string>
     <string name="title_albums">Albums</string>
     <string name="title_users">Users</string>
-    <string name="title_activity_post_detail">PostDetailActivity</string>
-    <string name="title_activity_album_detail">AlbumDetailActivity</string>
+    <string name="title_activity_post_detail">Post Comments</string>
+    <string name="title_activity_album_detail">Album</string>
+    <string name="comments">Comments</string>
 </resources>

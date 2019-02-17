@@ -7,20 +7,16 @@ import android.databinding.BindingAdapter
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 
-class AlbumDetailViewModel : ViewModel(){
+class AlbumDetailViewModel : ViewModel() {
     private var imageId = MutableLiveData<String>()
-
 
     fun initImage(intent: Intent?) {
         imageId.value = intent?.getStringExtra("imageurl")
-
     }
-
 
     fun getImageId(): MutableLiveData<String> {
         return imageId
     }
-
 
     companion object {
         @JvmStatic

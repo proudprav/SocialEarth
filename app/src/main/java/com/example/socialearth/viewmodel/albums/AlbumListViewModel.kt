@@ -3,15 +3,14 @@ package com.example.socialearth.viewmodel.albums
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.BindingAdapter
-import com.example.socialearth.model.AlbumsDTO
-import com.example.socialearth.model.Users
 import android.widget.ImageView
+import com.example.socialearth.model.AlbumsDTO
 import com.example.socialearth.model.ImageUrls
+import com.example.socialearth.model.Users
 import com.squareup.picasso.Picasso
 
 
 class AlbumListViewModel : ViewModel() {
-
 
     private val postTitle = MutableLiveData<String>()
     private val postByUser = MutableLiveData<String>()
@@ -34,7 +33,6 @@ class AlbumListViewModel : ViewModel() {
     fun getImageId(): MutableLiveData<String> {
         return imageId
     }
-
 
     companion object {
         @JvmStatic

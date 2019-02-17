@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/listLightDark"
-            android:adapter="@{postviewmodel.mypostsRecyclerViewAdapter}"
+            android:adapter="@{postviewmodel.postsListViewAdapter}"
             app:layoutManager="LinearLayoutManager"
             tools:context=".view.posts.PostsFragment"
             tools:listitem="@layout/fragment_posts_item" />

@@ -8,11 +8,11 @@ import com.example.socialearth.R
 import com.example.socialearth.databinding.FragmentPostsItemBinding
 import com.example.socialearth.model.PostDTO
 import com.example.socialearth.viewmodel.posts.PostListViewModel
-import java.util.ArrayList
+import java.util.*
 
-class MypostsRecyclerViewAdapter(listner : OnItemClickListener) : RecyclerView.Adapter<MypostsRecyclerViewAdapter.ItemRowHolder>() {
+class PostsListViewAdapter(listner: OnItemClickListener) : RecyclerView.Adapter<PostsListViewAdapter.ItemRowHolder>() {
 
-    lateinit var dataList: ArrayList<PostDTO>
+    private lateinit var dataList: ArrayList<PostDTO>
     private val listener: OnItemClickListener = listner
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ItemRowHolder {
@@ -24,7 +24,7 @@ class MypostsRecyclerViewAdapter(listner : OnItemClickListener) : RecyclerView.A
     }
 
     override fun onBindViewHolder(itemRowHolder: ItemRowHolder, position: Int) {
-        itemRowHolder.bind(dataList[position],listener)
+        itemRowHolder.bind(dataList[position], listener)
     }
 
     fun updateDataList(list: ArrayList<PostDTO>) {
@@ -37,9 +37,9 @@ class MypostsRecyclerViewAdapter(listner : OnItemClickListener) : RecyclerView.A
     }
 
     inner class ItemRowHolder(val view: FragmentPostsItemBinding) : RecyclerView.ViewHolder(view.root) {
-        var postListViewModel: PostListViewModel = PostListViewModel()
+        private var postListViewModel: PostListViewModel = PostListViewModel()
         fun bind(data: PostDTO, listner: OnItemClickListener) {
-            view.root.setOnClickListener {  listner.onItemClick(data) }
+            view.root.setOnClickListener { listner.onItemClick(data) }
             postListViewModel.bind(data)
             view.postitemviewmodel = postListViewModel
         }

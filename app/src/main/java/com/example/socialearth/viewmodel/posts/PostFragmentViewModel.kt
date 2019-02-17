@@ -5,29 +5,28 @@ import android.arch.lifecycle.ViewModel
 import android.os.Bundle
 import com.example.socialearth.model.PostDTO
 import com.example.socialearth.networkutil.RetrofitFactory
-import com.example.socialearth.model.Users
-import com.example.socialearth.model.UsersDTO
-import com.example.socialearth.view.posts.MypostsRecyclerViewAdapter
+import com.example.socialearth.view.posts.PostsListViewAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class PostFragmentViewModel : ViewModel(),MypostsRecyclerViewAdapter.OnItemClickListener {
+class PostFragmentViewModel : ViewModel(), PostsListViewAdapter.OnItemClickListener {
+
     val uiEventLiveData = MutableLiveData<Bundle>()
-    var mypostsRecyclerViewAdapter: MypostsRecyclerViewAdapter = MypostsRecyclerViewAdapter(this)
+    var postsListViewAdapter: PostsListViewAdapter = PostsListViewAdapter(this)
     var compositeDisposable = CompositeDisposable()
 
     init {
         val service = RetrofitFactory.makeRetrofitService()
         compositeDisposable.add(
             service.getPosts().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(
-                { res -> showsomething(res) },
+                { res -> updatPost(res) },
                 { e -> print(e) })
         )
     }
 
-    fun showsomething(post: ArrayList<PostDTO>) {
-        mypostsRecyclerViewAdapter.updateDataList(post)
+    private fun updatPost(post: ArrayList<PostDTO>) {
+        postsListViewAdapter.updateDataList(post)
     }
 
     override fun onCleared() {
@@ -36,11 +35,11 @@ class PostFragmentViewModel : ViewModel(),MypostsRecyclerViewAdapter.OnItemClick
     }
 
     override fun onItemClick(item: PostDTO) {
-        var bundle : Bundle = Bundle()
-        bundle.putString("title",item.title)
-        bundle.putString("body",item.body)
-        bundle.putInt("userId",item.userId!!)
-        bundle.putInt("id",item.id!!)
+        val bundle = Bundle()
+        bundle.putString("title", item.title)
+        bundle.putString("body", item.body)
+        bundle.putInt("userId", item.userId!!)
+        bundle.putInt("id", item.id!!)
         uiEventLiveData.value = bundle
     }
 

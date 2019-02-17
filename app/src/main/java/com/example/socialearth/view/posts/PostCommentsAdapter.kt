@@ -5,17 +5,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.socialearth.R
-import com.example.socialearth.databinding.FragmentPostsItemBinding
 import com.example.socialearth.databinding.PostCommentsItemBinding
 import com.example.socialearth.model.PostCommentsDTO
-import com.example.socialearth.model.PostDTO
 import com.example.socialearth.viewmodel.posts.PostCommentsListViewModel
-import com.example.socialearth.viewmodel.posts.PostListViewModel
-import java.util.ArrayList
+import java.util.*
 
-class PostCommentsAdapter: RecyclerView.Adapter<PostCommentsAdapter.ItemRowHolder>() {
+class PostCommentsAdapter : RecyclerView.Adapter<PostCommentsAdapter.ItemRowHolder>() {
 
-    lateinit var dataList: ArrayList<PostCommentsDTO>
+    private lateinit var dataList: ArrayList<PostCommentsDTO>
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ItemRowHolder {
         val binding: PostCommentsItemBinding = DataBindingUtil.inflate(
@@ -39,7 +36,7 @@ class PostCommentsAdapter: RecyclerView.Adapter<PostCommentsAdapter.ItemRowHolde
     }
 
     inner class ItemRowHolder(val view: PostCommentsItemBinding) : RecyclerView.ViewHolder(view.root) {
-        var postCommentsListViewModel: PostCommentsListViewModel = PostCommentsListViewModel()
+        private var postCommentsListViewModel: PostCommentsListViewModel = PostCommentsListViewModel()
         fun bind(data: PostCommentsDTO) {
             postCommentsListViewModel.bind(data)
             view.postcommentlistviewmodel = postCommentsListViewModel
