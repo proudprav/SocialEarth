@@ -1,39 +1,29 @@
 package com.example.socialearth.viewmodel.posts
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.example.socialearth.networkutil.PostDTO
+import android.os.Bundle
+import com.example.socialearth.model.PostDTO
 import com.example.socialearth.networkutil.RetrofitFactory
-import com.example.socialearth.networkutil.Users
-import com.example.socialearth.networkutil.UsersDTO
+import com.example.socialearth.model.Users
+import com.example.socialearth.model.UsersDTO
 import com.example.socialearth.view.posts.MypostsRecyclerViewAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class PostFragmentViewModel : ViewModel() {
-
-    var mypostsRecyclerViewAdapter: MypostsRecyclerViewAdapter = MypostsRecyclerViewAdapter()
+class PostFragmentViewModel : ViewModel(),MypostsRecyclerViewAdapter.OnItemClickListener {
+    val uiEventLiveData = MutableLiveData<Bundle>()
+    var mypostsRecyclerViewAdapter: MypostsRecyclerViewAdapter = MypostsRecyclerViewAdapter(this)
     var compositeDisposable = CompositeDisposable()
 
     init {
         val service = RetrofitFactory.makeRetrofitService()
-
-        val postResponse = service.getPosts()
-        val usersResponse = service.getUsers()
         compositeDisposable.add(
-            usersResponse.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(
-                { res -> setUsers(res) },
-                { e -> print(e) })
-        )
-        compositeDisposable.add(
-            postResponse.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(
+            service.getPosts().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(
                 { res -> showsomething(res) },
                 { e -> print(e) })
         )
-    }
-
-    private fun setUsers(users: ArrayList<UsersDTO>?) {
-        Users.userList = users!!
     }
 
     fun showsomething(post: ArrayList<PostDTO>) {
@@ -43,6 +33,15 @@ class PostFragmentViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
+    }
+
+    override fun onItemClick(item: PostDTO) {
+        var bundle : Bundle = Bundle()
+        bundle.putString("title",item.title)
+        bundle.putString("body",item.body)
+        bundle.putInt("userId",item.userId!!)
+        bundle.putInt("id",item.id!!)
+        uiEventLiveData.value = bundle
     }
 
 }

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.socialearth.R
 import com.example.socialearth.databinding.FragmentAlbumItemBinding
-import com.example.socialearth.networkutil.AlbumsDTO
+import com.example.socialearth.model.AlbumsDTO
 import com.example.socialearth.viewmodel.albums.AlbumListViewModel
 import java.util.*
 

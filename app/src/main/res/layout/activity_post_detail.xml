@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="postdetailviewmodel"
+                  type="com.example.socialearth.viewmodel.posts.PostDetailActivityViewModel"/>
+    </data>
+    <android.support.design.widget.CoordinatorLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.posts.PostDetailActivity">
+
+        <android.support.design.widget.AppBarLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:showIn="@layout/activity_post_detail"
+                tools:context=".view.posts.PostDetailActivity"
+        >
+            <TextView
+                    android:text="@{postdetailviewmodel.getPostTitle()}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/post_header"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:padding="8dp"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/post_body_comments"
+                    app:layout_constraintVertical_chainStyle="spread_inside"/>
+
+            <TextView
+                    android:text="@{postdetailviewmodel.getPostBody()}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/post_body_comments"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/post_header"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/post_by_user_comments"
+                    app:layout_constraintHorizontal_bias="0.062"/>
+            <TextView
+                    android:text="@{postdetailviewmodel.getPostByUser()}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/post_by_user_comments"
+                    android:layout_marginTop="8dp"
+                    android:textStyle="italic"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/post_body_comments"
+                    app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/comments"/>
+<TextView
+                    android:text="Comments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/comments"
+                    android:layout_marginTop="8dp"
+                    android:textSize="18sp"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/post_by_user_comments"
+                    app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/comments_list"
+android:layout_marginBottom="8dp"/>
+            <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="557dp"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    android:adapter="@{postdetailviewmodel.postCommentsAdapter}"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    tools:listitem="@layout/post_comments_item"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/post_by_user_comments"
+                    android:id="@+id/comments_list" app:layout_constraintHorizontal_bias="0.0"/>
+            </android.support.constraint.ConstraintLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

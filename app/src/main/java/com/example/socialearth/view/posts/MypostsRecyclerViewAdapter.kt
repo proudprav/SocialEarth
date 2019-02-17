@@ -5,24 +5,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.socialearth.R
-import com.example.socialearth.databinding.FragmentPostsBinding
 import com.example.socialearth.databinding.FragmentPostsItemBinding
-
-
-import com.example.socialearth.dummy.DummyContent.DummyItem
-import com.example.socialearth.networkutil.PostDTO
+import com.example.socialearth.model.PostDTO
 import com.example.socialearth.viewmodel.posts.PostListViewModel
-
 import java.util.ArrayList
 
-/**
- * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
- * specified [OnListFragmentInteractionListener].
- * TODO: Replace the implementation with code for your data type.
- */
-class MypostsRecyclerViewAdapter() : RecyclerView.Adapter<MypostsRecyclerViewAdapter.ItemRowHolder>() {
+class MypostsRecyclerViewAdapter(listner : OnItemClickListener) : RecyclerView.Adapter<MypostsRecyclerViewAdapter.ItemRowHolder>() {
 
     lateinit var dataList: ArrayList<PostDTO>
+    private val listener: OnItemClickListener = listner
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ItemRowHolder {
         val binding: FragmentPostsItemBinding = DataBindingUtil.inflate(
@@ -33,7 +24,7 @@ class MypostsRecyclerViewAdapter() : RecyclerView.Adapter<MypostsRecyclerViewAda
     }
 
     override fun onBindViewHolder(itemRowHolder: ItemRowHolder, position: Int) {
-        itemRowHolder.bind(dataList[position])
+        itemRowHolder.bind(dataList[position],listener)
     }
 
     fun updateDataList(list: ArrayList<PostDTO>) {
@@ -47,9 +38,14 @@ class MypostsRecyclerViewAdapter() : RecyclerView.Adapter<MypostsRecyclerViewAda
 
     inner class ItemRowHolder(val view: FragmentPostsItemBinding) : RecyclerView.ViewHolder(view.root) {
         var postListViewModel: PostListViewModel = PostListViewModel()
-        fun bind(data: PostDTO) {
+        fun bind(data: PostDTO, listner: OnItemClickListener) {
+            view.root.setOnClickListener {  listner.onItemClick(data) }
             postListViewModel.bind(data)
             view.postitemviewmodel = postListViewModel
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(item: PostDTO)
     }
 }

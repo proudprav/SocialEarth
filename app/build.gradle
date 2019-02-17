@@ -8,7 +8,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
-    dataBinding{
+    dataBinding {
         enabled = true
     }
     defaultConfig {

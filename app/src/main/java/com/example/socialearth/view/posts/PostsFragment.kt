@@ -1,6 +1,8 @@
 package com.example.socialearth.view.posts
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -27,5 +29,18 @@ class PostsFragment : Fragment() {
         )
         postListBinding.postviewmodel = postFragmentViewModel
         return postListBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        postFragmentViewModel.uiEventLiveData.observe(this, Observer {
+            startActivityfun(it)
+             })
+    }
+
+    private fun startActivityfun(postId: Bundle?) {
+        val intent = Intent(context, PostDetailActivity::class.java)
+        intent.putExtra("postBundle", postId)
+        startActivity(intent)
     }
 }

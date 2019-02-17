@@ -2,8 +2,8 @@ package com.example.socialearth.viewmodel.posts
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.example.socialearth.networkutil.PostDTO
-import com.example.socialearth.networkutil.Users
+import com.example.socialearth.model.PostDTO
+import com.example.socialearth.model.Users
 
 class PostListViewModel : ViewModel(){
 

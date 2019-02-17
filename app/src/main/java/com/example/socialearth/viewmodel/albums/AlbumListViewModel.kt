@@ -3,13 +3,10 @@ package com.example.socialearth.viewmodel.albums
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.BindingAdapter
-import com.example.socialearth.networkutil.AlbumsDTO
-import com.example.socialearth.networkutil.PostDTO
-import com.example.socialearth.networkutil.Users
-import android.R
+import com.example.socialearth.model.AlbumsDTO
+import com.example.socialearth.model.Users
 import android.widget.ImageView
-import com.example.socialearth.networkutil.ImageUrls
-import com.example.socialearth.view.albums.MyAlbumRecyclerViewAdapter
+import com.example.socialearth.model.ImageUrls
 import com.squareup.picasso.Picasso
 
 

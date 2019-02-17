@@ -1,7 +1,6 @@
-package com.example.socialearth.networkutil
+package com.example.socialearth.model
 
 import com.google.gson.annotations.SerializedName
-import java.util.function.Predicate
 
 data class AddressDTO(
 
@@ -135,7 +134,7 @@ data class UsersDTO(
 )
 
  object Users{
-     lateinit var userList : List<UsersDTO>
+      var userList : List<UsersDTO> = ArrayList()
 
      fun getUsername( userId: Int) : String?{
         val dto = userList.filter { it.id == userId }
@@ -144,7 +143,7 @@ data class UsersDTO(
  }
 
 object ImageUrls{
-     lateinit var imageList : List<AlbumPhotosDTO>
+      var imageList : List<AlbumPhotosDTO> = ArrayList()
 
     fun getThumnailImages(imageId: Int): String?{
         val dto = imageList.filter { it.albumId == imageId }.first()

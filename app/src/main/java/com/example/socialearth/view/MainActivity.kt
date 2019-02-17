@@ -7,7 +7,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import com.example.socialearth.R
 import com.example.socialearth.databinding.ActivityMainBinding
-import com.example.socialearth.networkutil.PostDTO
+import com.example.socialearth.model.PostDTO
 import com.example.socialearth.view.albums.AlbumFragment
 import com.example.socialearth.view.posts.PostsFragment
 import com.example.socialearth.viewmodel.MainActivityViewModel
@@ -46,5 +46,7 @@ class MainActivity : AppCompatActivity() {
         )
         mainActivityMainBinding.mainactivityvm = mainActivityViewModel
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        postsFragment = PostsFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.feedframe, postsFragment).commit()
     }
 }
