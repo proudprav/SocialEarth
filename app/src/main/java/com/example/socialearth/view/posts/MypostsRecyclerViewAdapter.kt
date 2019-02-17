@@ -22,7 +22,6 @@ import java.util.ArrayList
  */
 class MypostsRecyclerViewAdapter() : RecyclerView.Adapter<MypostsRecyclerViewAdapter.ItemRowHolder>() {
 
-
     lateinit var dataList: ArrayList<PostDTO>
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ItemRowHolder {
@@ -34,10 +33,7 @@ class MypostsRecyclerViewAdapter() : RecyclerView.Adapter<MypostsRecyclerViewAda
     }
 
     override fun onBindViewHolder(itemRowHolder: ItemRowHolder, position: Int) {
-
         itemRowHolder.bind(dataList[position])
-
-
     }
 
     fun updateDataList(list: ArrayList<PostDTO>) {
@@ -53,7 +49,6 @@ class MypostsRecyclerViewAdapter() : RecyclerView.Adapter<MypostsRecyclerViewAda
         var postListViewModel: PostListViewModel = PostListViewModel()
         fun bind(data: PostDTO) {
             postListViewModel.bind(data)
-
             view.postitemviewmodel = postListViewModel
         }
     }

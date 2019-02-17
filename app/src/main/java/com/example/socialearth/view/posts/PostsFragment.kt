@@ -13,10 +13,8 @@ import com.example.socialearth.viewmodel.posts.PostFragmentViewModel
 
 class PostsFragment : Fragment() {
 
-
     lateinit var postListBinding: com.example.socialearth.databinding.FragmentPostsBinding
     lateinit var postFragmentViewModel: PostFragmentViewModel
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,8 +26,6 @@ class PostsFragment : Fragment() {
             R.layout.fragment_posts, container, false
         )
         postListBinding.postviewmodel = postFragmentViewModel
-
-
         return postListBinding.root
     }
 }

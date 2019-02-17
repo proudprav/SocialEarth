@@ -25,9 +25,7 @@ class PostListViewModel : ViewModel(){
         return postBody
     }
 
-
     fun getPostByUser():MutableLiveData<String>{
-
         return postByUser
     }
 }

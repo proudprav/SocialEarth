@@ -9,6 +9,12 @@ interface RetrofitService {
     @GET("posts")
     fun getPosts() : Observable<ArrayList<PostDTO>>
 
+    @GET("albums")
+    fun getAlbums() : Observable<ArrayList<AlbumsDTO>>
+
+    @GET("albums/1/photos")
+    fun getAlbumsbyId() : Observable<ArrayList<AlbumPhotosDTO>>
+
     @GET("users")
     fun getUsers() : Observable<ArrayList<UsersDTO>>
 }

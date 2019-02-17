@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.socialearth.R
 import com.example.socialearth.databinding.FragmentAlbumItemBinding
-import com.example.socialearth.networkutil.PostDTO
+import com.example.socialearth.networkutil.AlbumsDTO
 import com.example.socialearth.viewmodel.albums.AlbumListViewModel
-
-import java.util.ArrayList
+import java.util.*
 
 class MyAlbumRecyclerViewAdapter : RecyclerView.Adapter<MyAlbumRecyclerViewAdapter.ItemRowHolder>() {
 
-    lateinit var dataList: ArrayList<PostDTO>
+    lateinit var dataList: ArrayList<AlbumsDTO>
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ItemRowHolder {
         val binding: FragmentAlbumItemBinding = DataBindingUtil.inflate(
@@ -24,13 +23,10 @@ class MyAlbumRecyclerViewAdapter : RecyclerView.Adapter<MyAlbumRecyclerViewAdapt
     }
 
     override fun onBindViewHolder(itemRowHolder: ItemRowHolder, position: Int) {
-
         itemRowHolder.bind(dataList[position])
-
-
+        itemRowHolder.albumListViewModel
     }
-
-    fun updateDataList(list: ArrayList<PostDTO>) {
+    fun updateDataList(list: ArrayList<AlbumsDTO>) {
         dataList = list
         notifyDataSetChanged()
     }
@@ -40,11 +36,13 @@ class MyAlbumRecyclerViewAdapter : RecyclerView.Adapter<MyAlbumRecyclerViewAdapt
     }
 
     inner class ItemRowHolder(val view: FragmentAlbumItemBinding) : RecyclerView.ViewHolder(view.root) {
-         var albumListViewModel: AlbumListViewModel = AlbumListViewModel()
-        fun bind(data: PostDTO) {
-            albumListViewModel.bind(data)
 
+        var albumListViewModel: AlbumListViewModel = AlbumListViewModel()
+        fun bind(data: AlbumsDTO) {
+            albumListViewModel.bind(data)
             view.albumlistviewmodel = albumListViewModel
         }
     }
+
+
 }

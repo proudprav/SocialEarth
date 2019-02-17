@@ -139,6 +139,15 @@ data class UsersDTO(
 
      fun getUsername( userId: Int) : String?{
         val dto = userList.filter { it.id == userId }
-         return dto[0].username
+         return dto[0].username + ", "+dto[0].address?.city
      }
  }
+
+object ImageUrls{
+     lateinit var imageList : List<AlbumPhotosDTO>
+
+    fun getThumnailImages(imageId: Int): String?{
+        val dto = imageList.filter { it.albumId == imageId }.first()
+        return dto.thumbnailUrl
+    }
+}
