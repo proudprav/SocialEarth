@@ -149,4 +149,9 @@ object ImageUrls{
         val dto = imageList.filter { it.albumId == imageId }.first()
         return dto.thumbnailUrl
     }
+    fun getImagesUrl(imageId: Int): String?{
+        val dto = imageList.filter { it.albumId == imageId }.first()
+        return dto.url
+    }
+
 }

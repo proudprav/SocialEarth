@@ -1,6 +1,8 @@
 package com.example.socialearth.viewmodel.albums
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.os.Bundle
 import com.example.socialearth.model.AlbumPhotosDTO
 import com.example.socialearth.model.AlbumsDTO
 import com.example.socialearth.model.ImageUrls
@@ -10,9 +12,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class AlbumFragmentViewModel : ViewModel() {
-
-    var myAlbumRecyclerViewAdapter: MyAlbumRecyclerViewAdapter = MyAlbumRecyclerViewAdapter()
+class AlbumFragmentViewModel : ViewModel(),MyAlbumRecyclerViewAdapter.OnItemClickListener {
+    val uiEventLiveData = MutableLiveData<String>()
+    var myAlbumRecyclerViewAdapter: MyAlbumRecyclerViewAdapter = MyAlbumRecyclerViewAdapter(this)
     var compositeDisposable = CompositeDisposable()
     val service = RetrofitFactory.makeRetrofitService()
 
@@ -31,5 +33,9 @@ class AlbumFragmentViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
+    }
+
+    override fun onItemClick(item: AlbumsDTO) {
+        uiEventLiveData.value = ImageUrls.getImagesUrl(item.id!!)
     }
 }

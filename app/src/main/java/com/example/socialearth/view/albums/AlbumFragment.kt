@@ -1,7 +1,9 @@
 package com.example.socialearth.view.albums
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -35,6 +37,13 @@ class AlbumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         list?.layoutManager = GridLayoutManager(activity, 3)
+        albumFragmentViewModel.uiEventLiveData.observe(this, Observer { callIntent(it) })
 
+    }
+
+    private fun callIntent(imageUrl: String?) {
+        val intent  = Intent(activity ,AlbumDetailActivity::class.java)
+        intent.putExtra("imageurl",imageUrl)
+        startActivity(intent)
     }
 }
