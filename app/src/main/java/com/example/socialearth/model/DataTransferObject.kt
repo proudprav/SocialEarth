@@ -1,6 +1,12 @@
 package com.example.socialearth.model
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
+import com.example.socialearth.networkutil.RetrofitFactory
 import com.google.gson.annotations.SerializedName
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 data class AddressDTO(
 
@@ -93,16 +99,16 @@ data class PostCommentsDTO(
 data class PostDTO(
 
     @field:SerializedName("id")
-    val id: Int? = null,
+    var id: Int? = null,
 
     @field:SerializedName("title")
-    val title: String? = null,
+    var title: String? = null,
 
     @field:SerializedName("body")
-    val body: String? = null,
+    var body: String? = null,
 
     @field:SerializedName("userId")
-    val userId: Int? = null
+    var userId: Int? = null
 )
 
 
@@ -118,13 +124,13 @@ data class UsersDTO(
     val phone: String? = null,
 
     @field:SerializedName("name")
-    val name: String? = null,
+    var name: String? = null,
 
     @field:SerializedName("company")
     val company: CompanyDTO? = null,
 
     @field:SerializedName("id")
-    val id: Int? = null,
+    var id: Int? = null,
 
     @field:SerializedName("email")
     val email: String? = null,
@@ -136,7 +142,7 @@ data class UsersDTO(
 object Users {
     var userList: List<UsersDTO>? = ArrayList()
 
-    fun getUsername(userId: Int): String? {
+     fun getUsername(userId: Int): String? {
         val dto = userList?.filter { it.id == userId }?.first()
         return """${dto?.username}, ${dto?.address?.city}"""
     }
@@ -156,3 +162,11 @@ object ImageUrls {
     }
 
 }
+
+
+
+
+
+
+
+

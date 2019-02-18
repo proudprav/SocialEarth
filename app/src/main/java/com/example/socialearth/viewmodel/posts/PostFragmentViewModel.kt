@@ -9,23 +9,24 @@ import com.example.socialearth.view.posts.PostsListViewAdapter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class PostFragmentViewModel : ViewModel(), PostsListViewAdapter.OnItemClickListener {
 
     val uiEventLiveData = MutableLiveData<Bundle>()
     var postsListViewAdapter: PostsListViewAdapter = PostsListViewAdapter(this)
-    var compositeDisposable = CompositeDisposable()
+    private var compositeDisposable = CompositeDisposable()
 
     init {
         val service = RetrofitFactory.makeRetrofitService()
         compositeDisposable.add(
-            service.getPosts().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(
+            service.getPosts().delay(200,TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe(
                 { res -> updatPost(res) },
                 { e -> print(e) })
         )
     }
 
-    private fun updatPost(post: ArrayList<PostDTO>) {
+    fun updatPost(post: ArrayList<PostDTO>) {
         postsListViewAdapter.updateDataList(post)
     }
 
